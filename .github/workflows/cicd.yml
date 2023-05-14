@@ -1,4 +1,4 @@
-name: Rust
+name: CI / CD (test, fmt, clippy, coverage)
 
 on: [push, pull_request]
 
