@@ -41,7 +41,7 @@ jobs:
           cargo tarpaulin --verbose --workspace -o html && mkdir dist && mv tarpaulin-report.html dist/report.html
       - name: Build docs
         run: |
-          cargo doc -r && mv target/doc dist/
+          cargo doc -r && mv target/doc/* dist/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
