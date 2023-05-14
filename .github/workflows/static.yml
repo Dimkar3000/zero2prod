@@ -38,7 +38,10 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Generate code coverage
         run: |
-          cargo tarpaulin --verbose --workspace -o html && mkdir dist && mv tarpaulin-report.html dist/index.html
+          cargo tarpaulin --verbose --workspace -o html && mkdir dist && mv tarpaulin-report.html dist/report.html
+      - name: Build docs
+        run: |
+          cargo doc -r && mv target/doc dist/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
