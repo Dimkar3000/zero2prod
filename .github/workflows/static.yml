@@ -38,12 +38,12 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Generate code coverage
         run: |
-          cargo tarpaulin --verbose --workspace -o html && mv tarpaulin-report.html index.html
+          cargo tarpaulin --verbose --workspace -o html && mkdir dist && mv tarpaulin-report.html dist/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: "index.html"
+          path: "./dist"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
