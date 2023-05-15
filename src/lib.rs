@@ -1,16 +1,9 @@
-use actix_web::{web, App, HttpRequest, HttpResponse, HttpServer, Responder};
+use actix_web::{web, App, HttpResponse, HttpServer};
 
-pub async fn greet(req: HttpRequest) -> impl Responder {
-    let name = req.match_info().get("name").unwrap_or("World");
-    format!("Hello {}!", &name)
-}
 pub async fn health_check() -> HttpResponse {
     HttpResponse::Ok().finish()
 }
 
-// We need to mark `run` as public.
-// It is no longer a binary entrypoint, therefore we can mark it as async
-// without having to use any proc-macro incantation.
 pub async fn run() -> std::io::Result<()> {
     HttpServer::new(|| App::new().route("/health_check", web::get().to(health_check)))
         .bind("127.0.0.1:8000")?
