@@ -1,12 +1,24 @@
-use actix_web::{web, App, HttpResponse, HttpServer};
+use actix_web::{web, App, HttpServer};
 
-pub async fn health_check() -> HttpResponse {
-    HttpResponse::Ok().finish()
-}
+pub mod configuration;
+pub mod routes;
+
+use crate::routes::*;
 
 pub async fn run() -> std::io::Result<()> {
-    HttpServer::new(|| App::new().route("/health_check", web::get().to(health_check)))
-        .bind("127.0.0.1:8000")?
-        .run()
-        .await
+    let config = configuration::get_configuration().expect("failed to get configuration");
+    dbg!(&config);
+
+    let address = config.get_url_to_bind();
+
+    println!("listening to http://{address}");
+
+    HttpServer::new(|| {
+        App::new()
+            .route("/health_check", web::get().to(health_check))
+            .route("/subscribe", web::get().to(subsribe))
+    })
+    .bind(address)?
+    .run()
+    .await
 }

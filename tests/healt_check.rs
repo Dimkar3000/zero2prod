@@ -1,4 +1,4 @@
-use zero2prod::health_check;
+use zero2prod::routes::health_check;
 
 #[actix::test]
 async fn health_check_succeeds() {
