@@ -7,10 +7,11 @@ license = "MIT"
 
 [lib]
 path = "src/lib.rs"
+name="zero2prod"
 
 [[bin]]
 path = "src/main.rs"
-name = "zero2prod"
+name = "zero2prod_bin"
 
 [dependencies]
 actix = "0.13.0"
