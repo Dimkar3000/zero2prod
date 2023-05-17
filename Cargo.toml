@@ -16,4 +16,5 @@ name = "zero2prod"
 actix = "0.13.0"
 actix-web = { version="4.3.1", features=["macros"] }
 config = "0.13.3"
-serde = { version = "1.0.163", features = ["serde_derive", "derive"] }
+serde = { version = "1.0.160", features = ["serde_derive", "derive"] }
+sqlx = { version = "0.6.3", default-features = false, features=["runtime-actix-rustls", "macros", "postgres", "uuid", "chrono", "migrate"]}
