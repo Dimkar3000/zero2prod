@@ -8,6 +8,8 @@ on:
       - "**/Cargo.lock"
 jobs:
   security_audit:
+    environment:
+      DATABASE_URL: "postgresql://postgres:pass@localhost:5432/db"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

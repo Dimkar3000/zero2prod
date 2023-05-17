@@ -26,6 +26,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
+      DATABASE_URL: "postgresql://postgres:pass@localhost:5432/db"
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
